@@ -1,3 +1,4 @@
+
 /* Style all input fields */
 input {
   width: 50%;
@@ -9,50 +10,12 @@ input {
   margin-bottom: 16px;
 }
 
-  body {
-            text-align: center;
-        }
- 
-        h3 {
-            text-align: center;
-        }
- 
-        div {
-            max-width: 400px;
-            margin: auto;
-        }
- 
-        .input-icons {
-            width: 100%;
-            margin-bottom: 10px;
-        }
- 
-        .input-icons i {
-            position: absolute;
-        }
- 
-        .icon {
-            padding: 10px;
-            min-width: 40px;
-        }
- 
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-        }
-
-/* Style the submit button */
+ /* Style the submit button */
 input[type=submit] {
   background-color: #04AA6D;
   color: white;
 }
 
-/* Style the container for inputs */
-.container {
-  background-color: #ffff33;
-  padding: 20px;
-}
 
 /* The message box is shown when the user clicks on the password field */
 #message {
@@ -92,7 +55,7 @@ input[type=submit] {
 }
 
 input[type="text"] {
-    width: 300px; /* Set the width of the textboxes */
+    width: 348px; /* Set the width of the textboxes */
     height: 30px; /* Set the height of the textboxes */
     padding: 5px; /* Add some padding inside the textboxes */
     border: 1px solid #ccc; /* Add a border */
@@ -107,7 +70,7 @@ input[type="text"]:focus {
 }
 
 input[type="email"] {
-    width: 300px; /* Set the width of the textboxes */
+    width: 348px; /* Set the width of the textboxes */
     height: 30px; /* Set the height of the textboxes */
     padding: 5px; /* Add some padding inside the textboxes */
     border: 1px solid #ccc; /* Add a border */
@@ -122,7 +85,7 @@ input[type="email"]:focus {
 }
 
 input[type="password"] {
-    width: 300px; /* Set the width of the textboxes */
+    width: 348px; /* Set the width of the textboxes */
     height: 30px; /* Set the height of the textboxes */
     padding: 5px; /* Add some padding inside the textboxes */
     border: 1px solid #ccc; /* Add a border */
@@ -137,7 +100,7 @@ input[type="password"]:focus {
 }
 
 input[type="date"] {
-    width: 300px; /* Set the width of the textboxes */
+    width: 348px; /* Set the width of the textboxes */
     height: 30px; /* Set the height of the textboxes */
     padding: 5px; /* Add some padding inside the textboxes */
     border: 1px solid #ccc; /* Add a border */
@@ -152,7 +115,7 @@ input[type="date"]:focus {
 }
 
 input[type="tel"] {
-    width: 300px; /* Set the width of the textboxes */
+    width: 348px; /* Set the width of the textboxes */
     height: 30px; /* Set the height of the textboxes */
     padding: 5px; /* Add some padding inside the textboxes */
     border: 1px solid #ccc; /* Add a border */
@@ -186,3 +149,4 @@ input[type="tel"]:focus {
 .button:hover {
     background-color: #0056b3; /* Darker blue color on hover */
 }
+

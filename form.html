@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-10">
                     <div class="page-header">
-                        <h1>Premier League </small></h1>
+                        <h1>Premier League   <small>Live Scores, Stats & Blog | 2023/24</small></h1>
                     </div>
                     <h3>No room for racism</h3>
                     <ul class="nav nav-pills">
@@ -46,7 +46,7 @@
             <img alt="your account" src="images/your_account.png">
             <br><br>
             <center><h2>Creating a new account</h2></center>
-            <form method="post" action="confirmation.php" enctype="application/x-www-form-urlencoded" autocomplete="on" accept-charset="utf-8" target="_self">
+            <form method="post" action="submit_form.php" enctype="application/x-www-form-urlencoded" autocomplete="on" accept-charset="utf-8" target="_self">
                 <hr>
                 <center>
                     <br>
@@ -67,7 +67,7 @@
                         </tr>
                         <tr>
                             <td align="left"><label for="email"><b>New Password</b></label></td>
-                            <td><input type="password" name="password" id="password" title="Your password"  enterkeyhint="next" required></td>
+                            <td><input type="password" name="password" id="password" title="Your password"  enterkeyhint="next" required min="8"></td>
                         </tr>
                         <tr>
                             <td align="left"t><label for="date_birth"><b>Date of Birth</b></label></td>
@@ -80,7 +80,7 @@
                                     <option value="">Select a country</option>
                                           <option value="">Select a country</option>
                                           <option value="AF">Afghanistan</option>
-                                          <option value="AX">Åland Islands</option>
+                                          <option value="AX">Aland Islands</option>
                                           <option value="AL">Albania</option>
                                           <option value="DZ">Algeria</option>
                                           <option value="AS">American Samoa</option>
@@ -135,9 +135,9 @@
 										<option value="cd">congo - kinshasa</option>
 										<option value="ck">cook islands</option>
 										<option value="cr">costa rica</option>
-										<option value="ci">côte d’ivoire</option>
+										<option value="ci">cote d’ivoire</option>
 										<option value="hr">croatia</option>
-										<option value="cw">curaçao</option>
+										<option value="cw">curacao</option>
 										<option value="cy">cyprus</option>
 										<option value="cz">czechia</option>
 										<option value="dk">denmark</option>
@@ -260,13 +260,13 @@
 										<option value="pt">portugal</option>
 										<option value="pr">puerto rico</option>
 										<option value="qa">qatar</option>
-										<option value="re">réunion</option>
+										<option value="re">reunion</option>
 										<option value="ro">romania</option>
 										<option value="ru">russia</option>
 										<option value="rw">rwanda</option>
 										<option value="ws">samoa</option>
 										<option value="sm">san marino</option>
-										<option value="st">são tomé &amp; príncipe</option>
+										<option value="st">sao tome &amp; principe</option>
 										<option value="sa">saudi arabia</option>
 										<option value="sn">senegal</option>
 										<option value="rs">serbia</option>
@@ -284,7 +284,7 @@
 										<option value="ss">south sudan</option>
 										<option value="es">spain</option>
 										<option value="lk">sri lanka</option>
-										<option value="bl">st barthélemy</option>
+										<option value="bl">st barthelemy</option>
 										<option value="sh">st helena</option>
 										<option value="kn">st kitts &amp; nevis</option>
 										<option value="lc">st lucia</option>
@@ -348,13 +348,114 @@
                             <td>
                                 <input type="checkbox" id="terms-of-use" name="terms-of-use"  value="yes">
                                 
-                               </td>
+                            </td>
                         </tr>
                            <td></td><td><button type="submit" value="Register">Register</button> <button type="reset" value="reset">Reset</button></td>
                     </table>
                 </center>
-
+                
             </form>
+			<script>
+				// Επικύρωση φόρμας
+				document.querySelector('form').addEventListener('submit', function(event) {
+					var valid = true;
+
+					// Έλεγχος για όνομα
+					var fnameInput = document.getElementById('fname');
+					if (fnameInput.value.trim() === '') {
+						valid = false;
+						setInvalid(fnameInput, 'Please enter your first name.');
+					} else {
+						setValid(fnameInput);
+					}
+
+					// Έλεγχος για επώνυμο
+					var lnameInput = document.getElementById('lname');
+					if (lnameInput.value.trim() === '') {
+						valid = false;
+						setInvalid(lnameInput, 'Please enter your last name.');
+					} else {
+						setValid(lnameInput);
+					}
+
+					// Έλεγχος για email
+					var emailInput = document.getElementById('email');
+					if (!isValidEmail(emailInput.value.trim())) {
+						valid = false;
+						setInvalid(emailInput, 'Please enter a valid email address.');
+					} else {
+						setValid(emailInput);
+					}
+
+					// Ελέγχος για κωδικό
+					var passwordInput = document.getElementById('password');
+					if (passwordInput.value.trim() === '') {
+						valid = false;
+						setInvalid(passwordInput, 'Please enter a password.');
+					} else {
+						setValid(passwordInput);
+					}
+
+					// Ελέγχος για ημερομηνία γέννησης
+					var dobInput = document.getElementsByName('date_birth')[0];
+					if (dobInput.value.trim() === '') {
+						valid = false;
+						setInvalid(dobInput, 'Please enter your date of birth.');
+					} else {
+						setValid(dobInput);
+					}
+
+					// Έλεγχος για επιλογή χώρας
+					var countryInput = document.getElementById('country');
+					if (countryInput.value.trim() === '') {
+						valid = false;
+						setInvalid(countryInput, 'Please select your country.');
+					} else {
+						setValid(countryInput);
+					}
+
+					// Έλεγχος για τηλέφωνο
+					var phoneInput = document.getElementById('phone');
+					if (phoneInput.value.trim() === '') {
+						valid = false;
+						setInvalid(phoneInput, 'Please enter your mobile number.');
+					} else {
+						setValid(phoneInput);
+					}
+
+					// Έλεγχος για αποδοχή όρων χρήσης
+					var termsInput = document.getElementById('terms-of-use');
+					if (!termsInput.checked) {
+						valid = false;
+						alert('Please accept the terms of use.');
+					}
+
+					if (!valid) {
+						// Ακύρωση της υποβολής της φόρμας εάν δεν είναι έγκυρη
+						event.preventDefault();
+					}
+				});
+
+				// Επισημαίνει ένα πεδίο ως μη έγκυρο με μήνυμα
+				function setInvalid(input, message) {
+					input.classList.add('is-invalid');
+					input.nextElementSibling.innerText = message;
+				}
+
+				// Επισημαίνει ένα πεδίο ως έγκυρο
+				function setValid(input) {
+					input.classList.remove('is-invalid');
+					input.classList.add('is-valid');
+					input.nextElementSibling.innerText = '';
+				}
+
+				// Έλεγχος εάν η διεύθυνση email είναι έγκυρη
+				function isValidEmail(email) {
+					var re = /\S+@\S+\.\S+/;
+					return re.test(email);
+				}
+			</script>
+
             <br><br>
             <center><a href="http://localhost/mywebsite/"><img src="images/Premier_League.jpg" border="4" style="color:white" alt="Premier League"></a></center>
             <center><b style="color:black; font-family:times new roman;">&copy;PREMIER LEAGUE 2023</b></center>

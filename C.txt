@@ -1,0 +1,50 @@
+Ανοιγμα το XAMPP Control Panel v3.3.0
+πληκτρολογώ στη address bar του Chrome, localhost/dashboard
+Επιλέγω απο το μενού τη phpMyAdmin
+Στη ενότητα "Κώδικας SQL" δίνω τις παρακάτω εντόλες. 
+
+CREATE DATABASE social_media;
+Αφού επίλεξα τη Βάση Δεδομένων μου στη αριστερή πλευρά του phpMyAdmin, έτρεξα τον παρακάτω κώδικα. 
+
+-- Δημιουργία πίνακα Χρήστες
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+-- Εισαγωγή μερικών χρηστών
+INSERT INTO Users (username, password, email) VALUES
+('user1', 'password1', 'user1@example.com'),
+('user2', 'password2', 'user2@example.com'),
+('user3', 'password3', 'user3@example.com');
+
+-- Δημιουργία πίνακα Φίλοι
+CREATE TABLE Friends (
+    friendship_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    friend_id INT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (friend_id) REFERENCES Users(user_id)
+);
+
+-- Εισαγωγή μερικών φίλων
+INSERT INTO Friends (user_id, friend_id) VALUES
+(1, 2),
+(1, 3),
+(2, 3);
+
+-- Δημιουργία πίνακα Δημοσιεύσεις
+CREATE TABLE Posts (
+    post_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    content TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- Εισαγωγή μερικών δημοσιεύσεων
+INSERT INTO Posts (user_id, content) VALUES
+(1, 'Καλημέρα παγκόσμιε!'),
+(2, 'Μόλις εγκατέλειψα την πόλη.'),
+(3, 'Τι νέα;');

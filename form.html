@@ -73,15 +73,12 @@
             <img alt="your account" src="images/your_account.png">
             <br><br>
             <center><h2>Creating a new account</h2></center>
-            <form method="post" action="confirmation.php" enctype="application/x-www-form-urlencoded" autocomplete="on" accept-charset="utf-8" target="_self">
+            <form method="post" action="confirmation.php" enctype="application/x-www-form-urlencoded" autocomplete="on" accept-charset="utf-8" target="_self" onsubmit="validateForm(event)">
                 <hr>
                 <center>
                     <br>
                     <table>
-                        <tr>
-                            <td><h4>Your Personal Details</h4></td><td></td>
-                        <tr>
-                                     
+                                                                                 
                             <td align="left"><label for="fname"><b>First Name</b></label></td>
                             <td><div class="input-icon"><input type="text" name="fname" id="fname" title="Your first name"  autocomplete="given-name" enterkeyhint="next" required><i  id="fname-icon"</i></div>
 							<span id="fname-error" style="color: red; display: none;">First name is too short</span></td>
@@ -104,19 +101,23 @@
     
                         </tr>
 
-                        <tr>
-						    
-                            <td align="left"><label for="email"><b>New Password</b></label></td>
-                            <td><div class="input-icon"><input type="password" name="password" id="password" title="Your password"  enterkeyhint="next" required><i id="password-icon"></i></div></td>
-	                        <span id="password-error" style="color: red; display: none;">Password should have at least one lowercase letter, one uppercase letter, one number, and one special character (! @ # $ % ^ & *)</span>
+                    <tr>
+						<td align="left"><label for="password"><b>New Password</b></label></td>
+						<td>
+							<div class="input-icon">
+								<input type="password" name="password" id="password" title="Your password" enterkeyhint="next" required>
+								<i id="password-icon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+							</div>
+							<span id="password-error" style="color: red; display: none;">Password should have minimum of one lowercase <br>letter, one uppercase letter, one number, <br>one special character (! @ # $ % ^ & *) <br>and a maximum of 20 characters.</span>
+						</td>
 
-                        </tr>
+					</tr>
 
                         <tr>
 						    
                             <td align="left"t><label for="date_birth"><b>Date of Birth</b></label></td>
-                            <td><div class="input-icon"><input type="date" name="date_birth" title="Date of your birth in form dd/mm/yyyy" required><i id="dob-icon"></i></div>
-                            <span id="date-error" style="color: red; display: none;">Select your date of birth</span></td>
+                            <td><div class="input-icon"><input type="date" name="date_birth" title="Date of your birth in form mm/dd/yyyy" required><i id="dob-icon"></i></div>
+                            <span id="date-error" style="color: red; display: none;">Date of birth can not be in the future.</span></td>
 
                         </tr>
 
@@ -135,7 +136,7 @@
 											<option value="AO">Angola</option>
 											<option value="AI">Anguilla</option>
 											<option value="AQ">Antarctica</option>
-											<option value="AG">Antigua and Barbuda</option>
+											<option value="AG">Antigua &amp; Barbuda</option>
 											<option value="AR">Argentina</option>
 											<option value="AM">Armenia</option>
 											<option value="AW">Aruba</option>
@@ -153,8 +154,8 @@
 											<option value="BM">Bermuda</option>
 											<option value="BT">Bhutan</option>
 											<option value="BO">Bolivia</option>
-											<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-											<option value="BA">Bosnia and Herzegovina</option>
+											<option value="BQ">Bonaire, Sint Eustatius &amp; Saba</option>
+											<option value="BA">Bosnia &amp; Herzegovina</option>
 											<option value="BW">Botswana</option>
 											<option value="BV">Bouvet Island</option>
 											<option value="BR">Brazil</option>
@@ -379,8 +380,8 @@
 											<option value="ZM">Zambia</option>
 											<option value="ZW">Zimbabwe</option>
                                         </select>
-
-                            <i id="country-icon"></i></div><span id="country-error" style="color: red; display: none;">Please, select your country</span></td></td>
+										<i id="country-icon"></i></div>
+										<span id="country-error" style="color: red; display: none;">Please, select your country</span></td>
 
                         </tr>
 
@@ -396,28 +397,32 @@
 						</tr>
 
 
-                        <tr>
-						    
-                            <td align="left"><label for="sex" title="Your gender"><b>Gender</b></label></td>
-                              <td><div class="input-icon">
-                                  <label><input type="radio" id="male" name="sex" value="Male"> <b>Male</b></label>
-								  <label><input type="radio" name="sex" id="female" value="Female"> <b>Female</b></label> 
-								  <label><input type="radio" name="sex" id="Unspecified" value="Unspecified"><b> Unspecified</b></label>
-                                  <i id="gender-icon"></i></div>
-                                  <span id="gender-error" style="color: red; display: none;">Please, select your gender</span></td>
-                        </tr>
+						<tr>
+
+						<td align="left"><label for="sex" title="Your gender"><b>Gender</b></label></td>
+						<td>
+							<div class="input-icon">
+								<label><input type="radio" name="sex" id="male" value="Male" required> <b>Male</b></label>
+								<label><input type="radio" name="sex" id="female" value="Female"> <b>Female</b></label> 
+								<label><input type="radio" name="sex" id="Unspecified" value="Unspecified"> <b>Unspecified</b></label>
+								<i id="gender-icon"></i>
+							</div>
+							<span id="gender-error" style="color: red; display: none;">Please, select your gender</span>
+						</td>
+					</tr>
+
 
                         <tr>
 						    
                             <td align="left"><label for="terms-of-use" title="Terms of use"><b>Accept terms of use</b></label></td>
                             <td><div class="input-icon">
-                                <input type="checkbox" id="terms-of-use" name="terms-of-use"  value="yes"><i id="terms-of-use-icon"></i></div>
-                                <span id="terms-of-use-error" style="color: red; display: none;">Please, select your gender</span></td>
+                                <input type="checkbox" id="terms-of-use" name="terms-of-use"  value="yes" required><i id="terms-of-use-icon"></i></div>
+                                <span id="terms-of-use-error" style="color: red; display: none;">Please,note that is important to accept<br> the terms of use.</span></td>
                         </tr>
 
                         <tr>
 
-                           <td></td><td><button type="submit" value="Register">Register</button> <button type="reset" value="reset">Reset</button></td>
+                           <td></td><td><button type="submit" value="Register">Register</button> <button type="reset" value="reset" onclick="resetForm()">Reset</button></td>
 
 						 </tr>
 
@@ -426,156 +431,241 @@
                 </center>
 
             </form>
+
 <script>
-   // JavaScript code to display message and icon based on first name length
-document.getElementById("fname").addEventListener("input", function() {
-    var fname = this.value.trim();
-    var fnameError = document.getElementById("fname-error");
-    var fnameIcon = document.getElementById("fname-icon");
+		   // JavaScript code to display message and icon based on first name length
+		document.getElementById("fname").addEventListener("input", function() {
+			var fname = this.value.trim();
+			var fnameError = document.getElementById("fname-error");
+			var fnameIcon = document.getElementById("fname-icon");
 
-    if (fname.length < 3) {
-        fnameError.style.display = "inline";
-        fnameIcon.className = "fas fa-thumbs-down thumbs-down";
-    } else {
-        fnameError.style.display = "none";
-        fnameIcon.className = "fas fa-thumbs-up thumbs-up";
-    }
-});
+			if (fname.length < 3) {
+				fnameError.style.display = "inline";
+				fnameIcon.className = "fas fa-thumbs-down thumbs-down";
+			} else {
+				fnameError.style.display = "none";
+				fnameIcon.className = "fas fa-thumbs-up thumbs-up";
+			}
+		});
 
- // JavaScript code to display message and icon based on last name length
-document.getElementById("lname").addEventListener("input", function() {
-    var lname = this.value.trim();
-    var lnameError = document.getElementById("lname-error");
-    var lnameIcon = document.getElementById("lname-icon");
+		 // JavaScript code to display message and icon based on last name length
+		document.getElementById("lname").addEventListener("input", function() {
+			var lname = this.value.trim();
+			var lnameError = document.getElementById("lname-error");
+			var lnameIcon = document.getElementById("lname-icon");
 
-    if (lname.length < 8) {
-        lnameError.style.display = "inline";
-        lnameIcon.className = "fas fa-thumbs-down thumbs-down";
-    } else {
-        lnameError.style.display = "none";
-        lnameIcon.className = "fas fa-thumbs-up thumbs-up";
-    }
-});
-
-
-  // JavaScript code to validate password and display message and icon
-document.getElementById("password").addEventListener("input", function() {
-    var password = this.value.trim();
-    var passwordError = document.getElementById("password-error");
-    var passwordIcon = document.getElementById("password-icon");
-    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
-
-    if (passwordPattern.test(password)) {
-        passwordError.style.display = "none";
-        passwordIcon.className = "fas fa-thumbs-up thumbs-up";
-    } else {
-        passwordError.style.display = "inline";
-        passwordIcon.className = "fas fa-thumbs-down thumbs-down";
-    }
-});
+			if (lname.length < 8) {
+				lnameError.style.display = "inline";
+				lnameIcon.className = "fas fa-thumbs-down thumbs-down";
+			} else {
+				lnameError.style.display = "none";
+				lnameIcon.className = "fas fa-thumbs-up thumbs-up";
+			}
+		});
 
 
-  // JavaScript code to validate email format and display message and icon
-document.getElementById("email").addEventListener("input", function() {
-    var email = this.value.trim();
-    var emailError = document.getElementById("email-error");
-    var emailIcon = document.getElementById("email-icon");
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		function togglePasswordVisibility() {
+			var passwordInput = document.getElementById("password");
+			var passwordIcon = document.getElementById("password-icon");
 
-    if (emailPattern.test(email)) {
-        emailError.style.display = "none";
-        emailIcon.className = "fas fa-thumbs-up thumbs-up";
-    } else {
-        emailError.style.display = "inline";
-        emailIcon.className = "fas fa-thumbs-down thumbs-down";
-    }
-});
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				passwordIcon.classList.remove("fa-eye");
+				passwordIcon.classList.add("fa-eye-slash");
+			} else {
+				passwordInput.type = "password";
+				passwordIcon.classList.remove("fa-eye-slash");
+				passwordIcon.classList.add("fa-eye");
+			}
+		}
 
-  // JavaScript code to validate date of birth
-document.getElementById("date_birth").addEventListener("input", function() {
-    var dob = this.value.trim();
-    var dobError = document.getElementById("date-error");
-    var dobIcon = document.getElementById("dob-icon");
 
-    // Reset the error message initially
-    dobError.style.display = "none";
 
-    // Check if the input is not empty
-    if (dob) {
-        // Attempt to create a Date object from the input value
-        var dobDate = new Date(dob);
+		  // JavaScript code to validate password and display message and icon
+		document.getElementById("password").addEventListener("input", function() {
+			var password = this.value.trim();
+			var passwordError = document.getElementById("password-error");
+			var passwordIcon = document.getElementById("password-icon");
+			var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
 
-        // Check if the Date object is valid and the year is between 1900 and the current year
-        if (isNaN(dobDate.getTime()) || dobDate.getFullYear() < 1900 || dobDate.getFullYear() > new Date().getFullYear()) {
-            dobError.style.display = "inline";
-            dobIcon.className = "fas fa-thumbs-down thumbs-down";
+			if (passwordPattern.test(password)) {
+				passwordError.style.display = "none";
+				passwordIcon.className = "fas fa-thumbs-up thumbs-up";
+			} else {
+				passwordError.style.display = "inline";
+				passwordIcon.className = "fas fa-thumbs-down thumbs-down";
+			}
+		});
+
+
+		  // JavaScript code to validate email format and display message and icon
+		document.getElementById("email").addEventListener("input", function() {
+			var email = this.value.trim();
+			var emailError = document.getElementById("email-error");
+			var emailIcon = document.getElementById("email-icon");
+			var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (emailPattern.test(email)) {
+				emailError.style.display = "none";
+				emailIcon.className = "fas fa-thumbs-up thumbs-up";
+			} else {
+				emailError.style.display = "inline";
+				emailIcon.className = "fas fa-thumbs-down thumbs-down";
+			}
+		});
+
+				 // JavaScript code to validate date of birth
+			document.getElementsByName("date_birth")[0].addEventListener("input", function() {
+				var dob = this.value.trim();
+				var dobError = document.getElementById("date-error");
+				var dobIcon = document.getElementById("dob-icon");
+
+				// Reset the error message initially
+				dobError.style.display = "none";
+
+				// Check if the input is not empty
+				if (dob) {
+					// Attempt to create a Date object from the input value
+					var dobDate = new Date(dob);
+
+					// Get the current date
+					var currentDate = new Date();
+
+					// Check if the Date object is valid and the year is between 1900 and the current year
+					if (isNaN(dobDate.getTime()) || dobDate.getFullYear() < 1900 || dobDate.getFullYear() > currentDate.getFullYear() || dobDate > currentDate) {
+						dobError.style.display = "inline";
+						dobIcon.className = "fa fa-thumbs-down thumbs-down"; // Corrected class name
+					} else {
+						// Date of birth is valid
+						dobIcon.className = "fa fa-thumbs-up thumbs-up"; // Corrected class name
+					}
+				} else {
+					// Empty input
+					dobIcon.className = ""; // Reset the icon
+				}
+			});
+
+
+
+			// JavaScript code to validate country
+			document.getElementById("country").addEventListener("change", function() {
+				var country = this.value.trim();
+				var countryIcon = document.getElementById("country-icon");
+				if (country !== "") {
+					countryIcon.className = "fas fa-thumbs-up thumbs-up";
+				} else {
+					countryIcon.className = "fas fa-thumbs-down thumbs-down";
+				}
+			});
+
+		// JavaScript code to validate phone number
+		document.getElementById("phone").addEventListener("input", function() {
+			var phone = this.value.trim();
+			var phoneIcon = document.getElementById("phone-icon");
+			var phoneError = document.getElementById("phone-error");
+			var phonePattern = /^\d{10}$/; // Assuming the phone number should be exactly 10 digits
+
+			if (phonePattern.test(phone)) {
+				phoneIcon.className = "fas fa-thumbs-up thumbs-up";
+				phoneError.style.display = "none";
+			} else {
+				phoneIcon.className = "fas fa-thumbs-down thumbs-down";
+				phoneError.style.display = "inline";
+			}
+		});
+
+			// JavaScript code to validate gender
+		var genderRadios = document.querySelectorAll('input[name="sex"]');
+		genderRadios.forEach(function(radio) {
+			radio.addEventListener("change", function() {
+				var genderIcon = document.getElementById("gender-icon");
+				var genderError = document.getElementById("gender-error");
+				if (document.querySelector('input[name="sex"]:checked')) {
+					genderIcon.className = "fas fa-thumbs-up thumbs-up";
+					genderError.style.display = "none";
+				} else {
+					genderIcon.className = "fas fa-thumbs-down thumbs-down";
+					genderError.style.display = "inline";
+				}
+			});
+		});
+
+	
+		// JavaScript code to display message when terms of use is not checked
+		document.getElementById("terms-of-use").addEventListener("change", function() {
+			var termsOfUseIcon = document.getElementById("terms-of-use-icon");
+			var termsOfUseError = document.getElementById("terms-of-use-error");
+			if (this.checked) {
+				termsOfUseIcon.className = "fas fa-thumbs-up thumbs-up";
+				termsOfUseError.style.display = "none";
+			} else {
+				termsOfUseIcon.className = "fas fa-thumbs-down thumbs-down";
+				termsOfUseError.style.display = "inline";
+			}
+		});
+
+		function validateForm(event) {
+        var isValid = true;
+
+        // Validation for first name
+        var firstName = document.getElementById("fname").value.trim();
+        if (firstName.length < 3) {
+            isValid = false;
+            document.getElementById("fname-error").style.display = "inline";
         } else {
-            // Date of birth is valid
-            dobIcon.className = "fas fa-thumbs-up thumbs-up";
+            document.getElementById("fname-error").style.display = "none";
         }
-    } else {
-        // Empty input
-        dobIcon.className = ""; // Reset the icon
-    }
-});
 
-
-    // JavaScript code to validate country
-    document.getElementById("country").addEventListener("change", function() {
-        var country = this.value.trim();
-        var countryIcon = document.getElementById("country-icon");
-        if (country !== "") {
-            countryIcon.className = "fas fa-thumbs-up thumbs-up";
+        // Validation for last name
+        var lastName = document.getElementById("lname").value.trim();
+        if (lastName.length < 8) {
+            isValid = false;
+            document.getElementById("lname-error").style.display = "inline";
         } else {
-            countryIcon.className = "fas fa-thumbs-down thumbs-down";
+            document.getElementById("lname-error").style.display = "none";
         }
-    });
 
-// JavaScript code to validate phone number
-document.getElementById("phone").addEventListener("input", function() {
-    var phone = this.value.trim();
-    var phoneIcon = document.getElementById("phone-icon");
-    var phoneError = document.getElementById("phone-error");
-    var phonePattern = /^\d{10}$/; // Assuming the phone number should be exactly 10 digits
-
-    if (phonePattern.test(phone)) {
-        phoneIcon.className = "fas fa-thumbs-up thumbs-up";
-        phoneError.style.display = "none";
-    } else {
-        phoneIcon.className = "fas fa-thumbs-down thumbs-down";
-        phoneError.style.display = "inline";
-    }
-});
-
-// JavaScript code to validate gender
-var genderRadios = document.querySelectorAll('input[name="sex"]');
-genderRadios.forEach(function(radio) {
-    radio.addEventListener("change", function() {
-        var genderIcon = document.getElementById("gender-icon");
-        var genderError = document.getElementById("gender-error");
-        if (document.querySelector('input[name="sex"]:checked')) {
-            genderIcon.className = "fas fa-thumbs-up thumbs-up";
-            genderError.style.display = "none";
+        // Validation for email
+        var email = document.getElementById("email").value.trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            isValid = false;
+            document.getElementById("email-error").style.display = "inline";
         } else {
-            genderIcon.className = "fas fa-thumbs-down thumbs-down";
-            genderError.style.display = "inline";
+            document.getElementById("email-error").style.display = "none";
         }
-    });
-});
 
+        // Validation for password
+        var password = document.getElementById("password").value;
+        var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
+        if (!passwordPattern.test(password)) {
+            isValid = false;
+            document.getElementById("password-error").style.display = "inline";
+        } else {
+            document.getElementById("password-error").style.display = "none";
+        }
 
-// JavaScript code to display message when terms of use is not checked
-document.getElementById("terms-of-use").addEventListener("change", function() {
-    var termsOfUseIcon = document.getElementById("terms-of-use-icon");
-    var termsOfUseError = document.getElementById("terms-of-use-error");
-    if (this.checked) {
-        termsOfUseIcon.className = "fas fa-thumbs-up thumbs-up";
-        termsOfUseError.style.display = "none";
-    } else {
-        termsOfUseIcon.className = "fas fa-thumbs-down thumbs-down";
-        termsOfUseError.style.display = "inline";
+        // Add validation for other fields here
+
+        if (!isValid) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
     }
-});
+
+		  function resetForm() {
+        // Reset icons
+        var icons = document.querySelectorAll(".input-icon i");
+        icons.forEach(function(icon) {
+            icon.className = ""; // Reset the icon
+        });
+
+        // Reset error messages
+        var errorMessages = document.querySelectorAll("span[id$='-error']"); // Select all spans whose id ends with '-error'
+        errorMessages.forEach(function(errorMessage) {
+            errorMessage.style.display = "none"; // Hide the error message
+        });
+    }
+
 
 
 </script>

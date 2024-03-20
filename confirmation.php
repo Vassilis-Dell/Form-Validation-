@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Form</title>
+    <title>Account has been created successfully</title>
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
                             <a class="nav-link active" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="sign-in.html">Sign in</a>
                         </li>
                        
                         <li class="nav-item dropdown ml-md-auto">
@@ -75,16 +75,17 @@
 				$sql = "INSERT INTO MyGuests  (Firstname, Lastname, Email, Password, DOB, Country, Mobile, Gender, Terms_of_Use)
 						VALUES ('$fname', '$lname', '$email', '$password', '$date_birth', '$country', '$phone', '$sex', '$terms_of_use')";
 
-				if (isset($_POST['email'])) {
-								$email = $_POST['email'];
-								echo "<center>Thanks for registering. Please check the inbox of <b>$email</b> for a confirmation email allowing you to finish the process.</center>";
+				if (isset($_POST['email'])) 
+					if (isset($_POST['fname'])){
+								
+								echo "<center>Thanks for registering <b>$fname</b>. Please check the inbox of <b>$email</b> for a confirmation email allowing you to finish the process.</center>";
 							}
 
                 // Step 5: Execute SQL query
 				if ($conn->query($sql) === TRUE) {
 					echo "<center>Your private data has been stored to our database successfully.</center>";
 				} else {
-					echo "Error: " . $sql . "<br>" . $conn->error;
+					echo "Error:Run B_i.php & B_ii.php first " . $sql . "<br>" . $conn->error;
 				}
 
 				// Step 6: Close database connection

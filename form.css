@@ -1,3 +1,63 @@
+#form-error {
+    color: red;
+    display: none;
+    font-size: 18px;
+    text-align: center; /* Center the text horizontally */
+}
+
+.centered-content {
+    text-align: center;
+}
+
+.centered-content a img {
+    color: white; /* Image color */
+    border: 4px solid white; /* Image border color */
+}
+
+.centered-content b {
+    color: black; /* Text color */
+    font-family: 'Times New Roman', Times, serif; /* Font family */
+}
+
+
+td {
+  text-align: left;
+}
+
+h2 {
+  text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+label {
+	width: 99%;
+	font-weight: bold;
+}
+.input-icon {
+	position: relative;
+}
+.input-icon i {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.thumbs-down {
+	color: red;
+}
+.thumbs-up {
+	color: green;
+}
+
+
 /* Style all input fields */
 input {
   width: 50%;
